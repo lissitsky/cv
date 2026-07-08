@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Liliana Reis</title>
+<meta name="description" content="Get in touch with Liliana Reis — Multimedia Designer.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="nav-logo">LILIANA REIS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="contact-main container">
+  <h1>Let's talk.</h1>
+
+  <div class="contact-block">
+    <span class="label">Email</span>
+    <span class="email-value" id="email-display">a carregar…</span>
+    <button class="copy-btn" id="copy-btn">Copy email</button>
+  </div>
+
+  <div class="contact-block">
+    <span class="label">Elsewhere</span>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/lilianaftreis/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.behance.net/lissitsky" target="_blank" rel="noopener">Behance</a>
+      <a href="https://www.instagram.com/lissitsky" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>© <span id="year"></span> Liliana Reis</span>
+  <a href="contact.html">Contact</a>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /*
+    Ofuscação simples do email: mantido dividido em partes no código para
+    dificultar a recolha automática por bots. Substitui "user" e "domain"
+    pelos teus valores reais abaixo.
+  */
+  const emailUser = "user";     // <-- substituir pela parte antes do @
+  const emailDomain = "domain.com"; // <-- substituir pelo domínio real
+  const email = emailUser + "@" + emailDomain;
+
+  const display = document.getElementById('email-display');
+  const btn = document.getElementById('copy-btn');
+
+  display.textContent = email;
+
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy email';
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch (err) {
+      btn.textContent = 'Copy failed';
+    }
+  });
+</script>
+</body>
+</html>

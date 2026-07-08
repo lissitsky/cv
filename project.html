@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Project — Liliana Reis</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="nav-logo">LILIANA REIS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="project-root">
+  <!-- preenchido via JS -->
+</main>
+
+<footer class="site-footer">
+  <span>© <span id="year"></span> Liliana Reis</span>
+  <a href="contact.html">Contact</a>
+</footer>
+
+<script src="js/projects-data.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const project = projects.find(p => p.id === id);
+  const root = document.getElementById('project-root');
+
+  if (!project) {
+    root.innerHTML = `
+      <div class="container" style="padding: 4rem 0;">
+        <p class="label">Not found</p>
+        <h1 class="mono" style="font-size:2rem; margin-top:1rem;">This project doesn't exist.</h1>
+        <p style="margin-top:1.5rem;"><a href="work.html" style="border-bottom:1px solid;">← Back to Work</a></p>
+      </div>
+    `;
+  } else {
+    document.getElementById('page-title').textContent = project.title + ' — Liliana Reis';
+
+    const mediaHTML = project.media.map(m => {
+      if (m.type === 'video') {
+        return `<figure><video src="${m.src}" poster="${m.poster || ''}" controls playsinline></video></figure>`;
+      }
+      return `<figure><img src="${m.src}" alt="${m.alt}" loading="lazy"><figcaption>${m.alt}</figcaption></figure>`;
+    }).join('');
+
+    const toolsHTML = project.tools.map(t => `<li>${t}</li>`).join('');
+
+    root.innerHTML = `
+      <div class="project-head container">
+        <a class="back" href="work.html">← Back to Work</a>
+        <h1>${project.title}</h1>
+        <div class="project-meta-row">
+          <span class="label">${project.category}</span>
+          <span class="label">${project.year}</span>
+        </div>
+      </div>
+
+      <div class="project-body container">
+        <div>
+          <h4>Description</h4>
+          <div class="bilingual">
+            <p>${project.descriptionEN}</p>
+            <p class="divider-line">—</p>
+            <p>${project.descriptionPT}</p>
+          </div>
+        </div>
+        <div>
+          <h4>Process</h4>
+          <div class="bilingual">
+            <p>${project.processEN}</p>
+            <p class="divider-line">—</p>
+            <p>${project.processPT}</p>
+          </div>
+          <h4 style="margin-top:2rem;">Tools</h4>
+          <ul class="tools-list">${toolsHTML}</ul>
+        </div>
+      </div>
+
+      <div class="project-media container">
+        ${mediaHTML}
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>

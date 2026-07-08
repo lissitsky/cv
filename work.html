@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liliana Reis — Multimedia Designer</title>
-<meta name="description" content="Liliana Reis — Multimedia Designer working across graphic design, motion graphics and UI/UX, based in Porto, Portugal.">
+<title>Work — Liliana Reis</title>
+<meta name="description" content="Selected work in graphic design, motion graphics and UI/UX by Liliana Reis.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,27 +13,19 @@
   <nav class="nav container">
     <a href="index.html" class="nav-logo">LILIANA REIS</a>
     <div class="nav-links">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="work.html">Work</a>
+      <a href="index.html">Home</a>
+      <a href="work.html" aria-current="page">Work</a>
       <a href="contact.html">Contact</a>
     </div>
   </nav>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="container">
-      <h1>Liliana<br>Reis</h1>
-      <p class="role">Multimedia Designer — Graphic, Motion &amp; UI/UX</p>
-    </div>
-  </section>
-
   <div class="section-heading container">
-    <h2>Selected Work</h2>
-    <a href="work.html">All projects →</a>
+    <h2>Work</h2>
   </div>
 
-  <div class="grid" id="featured-grid"></div>
+  <div class="grid" id="work-grid"></div>
 </main>
 
 <footer class="site-footer">
@@ -45,10 +37,8 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const featured = projects.slice(0, 3);
-  const grid = document.getElementById('featured-grid');
-
-  grid.innerHTML = featured.map(p => `
+  const grid = document.getElementById('work-grid');
+  grid.innerHTML = projects.map(p => `
     <a class="card" href="project.html?id=${p.id}">
       <div class="thumb"><img src="${p.coverImage}" alt="${p.coverAlt}" loading="lazy"></div>
       <div class="meta"><span>${p.category}</span><span>${p.year}</span></div>

@@ -1,0 +1,447 @@
+/* ==========================================================================
+   Liliana Reis — Portfolio
+   Design system: brutalist grid, mono + sans pairing, black/off-white only
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap');
+
+:root {
+  --bg: #FAFAF8;
+  --fg: #0A0A0A;
+  --fg-muted: #6B6B6B;
+  --border: #0A0A0A;
+  --divider: rgba(10, 10, 10, 0.14);
+
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-sans: 'General Sans', -apple-system, sans-serif;
+
+  --fs-hero: clamp(2.4rem, 7vw, 5.5rem);
+  --fs-h1: clamp(1.8rem, 4.5vw, 3rem);
+  --fs-h2: clamp(1.3rem, 2.5vw, 1.6rem);
+  --fs-body: 1rem;
+  --fs-small: 0.85rem;
+  --fs-label: 0.72rem;
+
+  --gap: clamp(1rem, 3vw, 2rem);
+  --container-max: 1240px;
+  --edge: clamp(1.25rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--edge);
+}
+
+/* ---------- Typographic utilities ---------- */
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-muted);
+}
+
+.bilingual {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.bilingual .divider-line {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+
+/* ---------- Header / Nav ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.1rem var(--edge);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-links a {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--fg);
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  width: 100%;
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--fg);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding: 1.5rem var(--edge);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.site-footer a:hover {
+  color: var(--fg);
+}
+
+/* ---------- Home ---------- */
+
+.hero {
+  padding: clamp(3rem, 10vw, 7rem) var(--edge) clamp(2rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: var(--fs-hero);
+  line-height: 1.02;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.hero .role {
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: clamp(2rem, 5vw, 3rem) var(--edge) 1.5rem;
+  border-bottom: 1px solid var(--divider);
+}
+
+.section-heading h2 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  margin: 0;
+}
+
+.section-heading a {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--fg);
+}
+
+/* ---------- Project grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid var(--divider);
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  border-right: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  padding: var(--gap);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: background 0.15s ease;
+}
+
+.card:hover {
+  background: rgba(10, 10, 10, 0.03);
+}
+
+.card .thumb {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #eee;
+}
+
+.card .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card h3 {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ---------- Project detail ---------- */
+
+.project-head {
+  padding: clamp(2.5rem, 7vw, 4.5rem) var(--edge) 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-head .back {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--fg-muted);
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.project-head .back:hover { color: var(--fg); }
+
+.project-head h1 {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  margin: 0 0 1rem;
+  line-height: 1.05;
+}
+
+.project-meta-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-body {
+  padding: clamp(2rem, 5vw, 3rem) var(--edge);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--divider);
+}
+
+@media (max-width: 800px) {
+  .project-body { grid-template-columns: 1fr; }
+}
+
+.project-body h4 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-muted);
+  margin: 0 0 0.9rem;
+}
+
+.tools-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tools-list li {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
+}
+
+.project-media {
+  padding: clamp(2rem, 5vw, 3rem) var(--edge);
+  display: grid;
+  gap: var(--gap);
+}
+
+.project-media figure {
+  margin: 0;
+}
+
+.project-media figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--fg-muted);
+  margin-top: 0.5rem;
+}
+
+/* ---------- Contact ---------- */
+
+.contact-main {
+  padding: clamp(3rem, 8vw, 6rem) var(--edge);
+}
+
+.contact-main h1 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  margin: 0 0 2.5rem;
+  line-height: 1.02;
+}
+
+.contact-block {
+  border-top: 1px solid var(--divider);
+  padding: 1.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact-block:last-child {
+  border-bottom: 1px solid var(--divider);
+}
+
+.contact-block .label {
+  min-width: 140px;
+}
+
+.email-value {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+}
+
+.copy-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.copy-btn.copied {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  border-bottom: 1px solid transparent;
+}
+
+.social-links a:hover {
+  border-bottom-color: var(--fg);
+}
+
+/* ---------- Focus visibility ---------- */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
